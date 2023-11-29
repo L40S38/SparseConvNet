@@ -12,3 +12,7 @@ PyTorch/sparseconvnet/SCN/__init__.py
 sparseconvnet.egg-info
 *.zip
 *.rar
+
+# 3d_segmentation train_val/* test/* ignored
+examples/3d_segmentation/train_val/*
+examples/3d_segmentation/test/*

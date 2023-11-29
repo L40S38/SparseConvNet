@@ -8,12 +8,12 @@
 #Download  https://shapenet.cs.stanford.edu/iccv17/ competition data.
 #We re-split the Train/Validation data 50-50 to increase the size of the validation set.
 
-wget https://shapenet.cs.stanford.edu/iccv17/partseg/train_data.zip
-wget https://shapenet.cs.stanford.edu/iccv17/partseg/train_label.zip
-wget https://shapenet.cs.stanford.edu/iccv17/partseg/val_data.zip
-wget https://shapenet.cs.stanford.edu/iccv17/partseg/val_label.zip
-wget https://shapenet.cs.stanford.edu/iccv17/partseg/test_data.zip
-wget https://shapenet.cs.stanford.edu/iccv17/partseg/test_label.zip
+wget https://shapenet.cs.stanford.edu/iccv17/partseg/train_data.zip --no-check-certificate
+wget https://shapenet.cs.stanford.edu/iccv17/partseg/train_label.zip --no-check-certificate
+wget https://shapenet.cs.stanford.edu/iccv17/partseg/val_data.zip --no-check-certificate
+wget https://shapenet.cs.stanford.edu/iccv17/partseg/val_label.zip --no-check-certificate
+wget https://shapenet.cs.stanford.edu/iccv17/partseg/test_data.zip --no-check-certificate
+wget https://shapenet.cs.stanford.edu/iccv17/partseg/test_label.zip --no-check-certificate
 unzip train_data.zip
 unzip train_label.zip
 unzip val_data
