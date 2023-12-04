@@ -138,7 +138,7 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         batch['y']=batch['y'].type(dtypei)
         batch['mask']=batch['mask'].type(dtype)
         # put data on device
-        for i in len(batch['x']):
+        for i in range(len(batch['x'])):
             batch['x'][i]=batch['x'][i].to(device)
         batch['y']=batch['y'].to(device)
         print(f"batch:{batch}")
