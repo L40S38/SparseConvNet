@@ -16,8 +16,12 @@ conda install pillow -c conda-forge -y
 conda install scipy -c anaconda -y
 
 #-> 3. run setup
-chmod +x develop.sh
-./develop.sh
+rm -rf build/ dist/ sparseconvnet.egg-info sparseconvnet/SCN*.so
+sudo apt-get update
+sudo apt install g++
+python setup.py develop
+python examples/hello-world.py
+rm -rf build/ dist/ sparseconvnet.egg-info 
 
 #-> 4. deactivate
 conda deactivate 2> /dev/null
