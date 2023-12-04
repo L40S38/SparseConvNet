@@ -134,6 +134,7 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
     start = time.time()
     for batch in trainIterator:
         optimizer.zero_grad()
+        batch = batch.to(device)
         batch['x'][1]=batch['x'][1].type(dtype)
         batch['y']=batch['y'].type(dtypei)
         batch['mask']=batch['mask'].type(dtype)
