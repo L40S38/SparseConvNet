@@ -50,8 +50,10 @@ p['momentum'] = 0.9
 p['check_point'] = False
 p['use_cuda'] = torch.cuda.is_available()
 p['gpu'] = 4
-dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
-dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
+#dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
+dtype = 'torch.FloatTensor'
+#dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
+dtypei = 'torch.LongTensor'
 device = torch.device('cuda:{}'.format(p['gpu']) if p['use_cuda'] else 'cpu')
 if p['use_cuda']:
     model = model.to(device)
@@ -136,12 +138,11 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         optimizer.zero_grad()
 
         # cast and put on the device
-        #batch['x'][1]=batch['x'][1].type(dtype)
-        for i in range(len(batch['x'])):
-            batch['x'][i] = batch['x'][i].to(device)
-        #batch['y']=batch['y'].type(dtypei)
+        batch['x'][1]=batch['x'][1].type(dtype)
+        batch['x'][1]=batch['x'][1].to(device)
+        batch['y']=batch['y'].type(dtypei)
         batch['y']=batch['y'].to(device)
-        #batch['mask']=batch['mask'].type(dtype)
+        batch['mask']=batch['mask'].type(dtype)
         batch['mask']=batch['mask'].to(device)
 
         predictions=model(batch['x'])
@@ -166,12 +167,11 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
             for batch in validIterator:
 
                 # cast and put on the device
-                #batch['x'][1]=batch['x'][1].type(dtype)
-                for i in range(len(batch['x'])):
-                    batch['x'][i] = batch['x'][i].to(device)
-                #batch['y']=batch['y'].type(dtypei)
+                batch['x'][1]=batch['x'][1].type(dtype)
+                batch['x'][1]=batch['x'][1].to(device)
+                batch['y']=batch['y'].type(dtypei)
                 batch['y']=batch['y'].to(device)
-                #batch['mask']=batch['mask'].type(dtype)
+                batch['mask']=batch['mask'].type(dtype)
                 batch['mask']=batch['mask'].to(device)
 
                 predictions=model(batch['x'])
