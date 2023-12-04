@@ -147,6 +147,8 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         batch['mask']=batch['mask'].type(dtype).to(device)
         #batch['mask']=batch['mask'].to(device)
 
+        print(f"batch:{batch}")
+
         predictions=model(batch['x'])
         loss = criterion.forward(predictions,batch['y'])
         store(stats,batch,predictions,loss)
