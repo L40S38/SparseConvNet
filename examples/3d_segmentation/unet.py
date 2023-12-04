@@ -136,13 +136,16 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         optimizer.zero_grad()
 
         # cast and put on the device
-        #batch['x'][1]=batch['x'][1].type(dtype)
-        for i in range(len(batch['x'])):
-            batch['x'][i] = batch['x'][i].to(device)
-        #batch['y']=batch['y'].type(dtypei)
+        batch['x'][1] = batch['x'][1].to(device)
+        print(batch['x'][1].dtype)
+        batch['x'][1]=batch['x'][1].type(dtype)
         batch['y']=batch['y'].to(device)
-        #batch['mask']=batch['mask'].type(dtype)
+        print(batch['y'].dtype)
+        batch['y']=batch['y'].type(dtypei)
         batch['mask']=batch['mask'].to(device)
+        print(batch['mask'].dtype)
+        batch['mask']=batch['mask'].type(dtype)
+        print(f"batch:{batch}")
 
         predictions=model(batch['x'])
         loss = criterion.forward(predictions,batch['y'])
