@@ -134,10 +134,13 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
     start = time.time()
     for batch in trainIterator:
         optimizer.zero_grad()
-        batch = batch.to(device)
         batch['x'][1]=batch['x'][1].type(dtype)
         batch['y']=batch['y'].type(dtypei)
         batch['mask']=batch['mask'].type(dtype)
+        # put data on device
+        for i in len(batch['x']):
+            batch['x'][i]=batch['x'][i].to(device)
+        batch['y']=batch['y'].to(device)
         print(f"batch:{batch}")
         predictions=model(batch['x'])
         print(f"predictions:{predictions}")
