@@ -49,7 +49,7 @@ p['weight_decay'] = 1e-4
 p['momentum'] = 0.9
 p['check_point'] = False
 p['use_cuda'] = torch.cuda.is_available()
-p['gpu'] = 4
+p['gpu'] = 5
 dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
 dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
 device = torch.device('cuda:{}'.format(p['gpu']) if p['use_cuda'] else 'cpu')
@@ -173,7 +173,7 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
                 batch['y']=batch['y'].to(device)
                 batch['mask']=batch['mask'].type(dtype)
                 batch['mask']=batch['mask'].to(device)
-                
+
                 predictions=model(batch['x'])
                 loss = criterion.forward(predictions,batch['y'])
                 store(stats,batch,predictions,loss)
