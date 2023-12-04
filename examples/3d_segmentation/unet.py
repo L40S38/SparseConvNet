@@ -53,6 +53,7 @@ p['gpu'] = 4
 dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
 dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
 device = torch.device('cuda:{}'.format(p['gpu']) if p['use_cuda'] else 'cpu')
+torch.set_default_device('cuda:{}'.format(p['gpu']))
 if p['use_cuda']:
     model = model.to(device)
     criterion = criterion.to(device)
@@ -137,15 +138,8 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         batch['x'][1]=batch['x'][1].type(dtype)
         batch['y']=batch['y'].type(dtypei)
         batch['mask']=batch['mask'].type(dtype)
-        # put data on device
-        for i in range(len(batch['x'])):
-            batch['x'][i]=batch['x'][i].to(device)
-        batch['y']=batch['y'].to(device)
-        print(f"batch:{batch}")
         predictions=model(batch['x'])
-        print(f"predictions:{predictions}")
         loss = criterion.forward(predictions,batch['y'])
-        print(f"loss:{loss}")
         store(stats,batch,predictions,loss)
         loss.backward()
         optimizer.step()
