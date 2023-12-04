@@ -8,12 +8,12 @@ conda activate sparseconvnet
 
 #-> 2. install related library
 #pip install -U pip
-pip install torch==1.3.0 torchvision torchaudio
-#conda install pytorch torchvision torchaudio cudatoolkit=10.1 -c pytorch -c nvidia -y
-#conda install scikit-learn -y
-#conda install tqdm -c conda-forge -y
-#conda install pillow -c conda-forge -y
-#conda install scipy -c anaconda -y
+#pip install torch==1.3.0 torchvision torchaudio
+conda install pytorch torchvision torchaudio cudatoolkit=10.1 -c pytorch -c nvidia -y
+conda install scikit-learn -y
+conda install tqdm -c conda-forge -y
+conda install pillow -c conda-forge -y
+conda install scipy -c anaconda -y
 
 #-> 3. run setup
 rm -rf build/ dist/ sparseconvnet.egg-info sparseconvnet/SCN*.so
