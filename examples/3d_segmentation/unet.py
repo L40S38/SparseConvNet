@@ -14,6 +14,9 @@ import os, sys
 import math
 import numpy as np
 
+# for debug
+os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
+
 data.init(-1,24,24*8,16)
 dimension = 3
 reps = 1 #Conv block repetition factor
