@@ -15,7 +15,7 @@ import math
 import numpy as np
 
 # for debug
-os.environ["CUDA_LAUNCH_BLOCKING"] = 1
+os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
 
 data.init(-1,24,24*8+15,16)
 dimension = 3
