@@ -136,12 +136,12 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         optimizer.zero_grad()
 
         # cast and put on the device
-        batch['x'][1]=batch['x'][1].type(dtype)
+        #batch['x'][1]=batch['x'][1].type(dtype)
         for i in range(len(batch['x'])):
             batch['x'][i] = batch['x'][i].to(device)
-        batch['y']=batch['y'].type(dtypei)
+        #batch['y']=batch['y'].type(dtypei)
         batch['y']=batch['y'].to(device)
-        batch['mask']=batch['mask'].type(dtype)
+        #batch['mask']=batch['mask'].type(dtype)
         batch['mask']=batch['mask'].to(device)
 
         predictions=model(batch['x'])
@@ -164,14 +164,14 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         start = time.time()
         for rep in range(1,1+3):
             for batch in validIterator:
-                
+
                 # cast and put on the device
-                batch['x'][1]=batch['x'][1].type(dtype)
+                #batch['x'][1]=batch['x'][1].type(dtype)
                 for i in range(len(batch['x'])):
                     batch['x'][i] = batch['x'][i].to(device)
-                batch['y']=batch['y'].type(dtypei)
+                #batch['y']=batch['y'].type(dtypei)
                 batch['y']=batch['y'].to(device)
-                batch['mask']=batch['mask'].type(dtype)
+                #batch['mask']=batch['mask'].type(dtype)
                 batch['mask']=batch['mask'].to(device)
 
                 predictions=model(batch['x'])
