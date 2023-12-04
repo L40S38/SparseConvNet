@@ -142,6 +142,7 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
 
         # cast and put on the device
         batch['x'][1]=torch.FloatTensor(batch['x'][1]).to(device)
+        batch['x'][0]=batch['x'][0].to(device)
         #batch['x'][1]=batch['x'][1].to(device)
         batch['y']=torch.LongTensor(batch['y']).to(device)
         #batch['y']=batch['y'].to(device)
