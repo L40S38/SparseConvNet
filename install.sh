@@ -17,8 +17,8 @@ conda install scipy -c anaconda -y
 
 #-> 3. run setup
 rm -rf build/ dist/ sparseconvnet.egg-info sparseconvnet/SCN*.so
-sudo apt-get update
-sudo apt install g++
+#sudo apt-get update
+#sudo apt install g++
 python setup.py develop
 python examples/hello-world.py
 rm -rf build/ dist/ sparseconvnet.egg-info 
