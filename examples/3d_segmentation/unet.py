@@ -53,6 +53,7 @@ p['momentum'] = 0.9
 p['check_point'] = False
 p['use_cuda'] = torch.cuda.is_available()
 p['gpu'] = 4
+os.environ["CUDA_VISIBLE_DEVICE"] = p['gpu']
 #dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
 #dtype = 'torch.FloatTensor'
 #dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
