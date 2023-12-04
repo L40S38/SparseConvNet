@@ -16,6 +16,8 @@ import numpy as np
 
 # for debug
 os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
+GPU_ID = 5
+torch.cuda.set_device(GPU_ID)
 
 data.init(-1,24,24*8+15,16)
 dimension = 3
@@ -52,11 +54,10 @@ p['weight_decay'] = 1e-4
 p['momentum'] = 0.9
 p['check_point'] = False
 p['use_cuda'] = torch.cuda.is_available()
-p['gpu'] = 5
-os.environ["CUDA_VISIBLE_DEVICES"] = str(p['gpu'])
+p['gpu'] = GPU_ID
 dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
 dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
-device = torch.device('cuda:0' if p['use_cuda'] else 'cpu')
+device = torch.device('cuda' if p['use_cuda'] else 'cpu')
 if p['use_cuda']:
     model = model.to(device)
     criterion = criterion.to(device)
@@ -147,7 +148,7 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         batch['mask']=batch['mask'].type(dtype).to(device)
         #batch['mask']=batch['mask'].to(device)
 
-        print(f"batch:{batch}")
+        #print(f"batch:{batch}")
 
         predictions=model(batch['x'])
         loss = criterion.forward(predictions,batch['y'])
