@@ -3,7 +3,7 @@
 #-> 1. create an conda environment
 source ~/anaconda3/etc/profile.d/conda.sh
 conda remove --name sparseconvnet --all -y
-conda create --name sparseconvnet python=3.3 -y
+conda create --name sparseconvnet python=3.6 -y
 conda activate sparseconvnet
 
 #-> 2. install related library
