@@ -141,11 +141,11 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         optimizer.zero_grad()
 
         # cast and put on the device
-        batch['x'][1]=torch.FloatTensor(batch['x'][1],device=device)
+        batch['x'][1]=torch.FloatTensor(batch['x'][1]).to(device)
         #batch['x'][1]=batch['x'][1].to(device)
-        batch['y']=torch.LongTensor(batch['y'],device=device)
+        batch['y']=torch.LongTensor(batch['y']).to(device)
         #batch['y']=batch['y'].to(device)
-        batch['mask']=torch.FloatTensor(batch['mask'],device=device)
+        batch['mask']=torch.FloatTensor(batch['mask']).to(device)
         #batch['mask']=batch['mask'].to(device)
 
         print(f"batch:{batch}")
@@ -172,11 +172,11 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
             for batch in validIterator:
 
                 # cast and put on the device
-                batch['x'][1]=torch.FloatTensor(batch['x'][1],device=device)
+                batch['x'][1]=torch.FloatTensor(batch['x'][1]).to(device)
                 #batch['x'][1]=batch['x'][1].to(device)
-                batch['y']=torch.LongTensor(batch['y'],device=device)
+                batch['y']=torch.LongTensor(batch['y']).to(device)
                 #batch['y']=batch['y'].to(device)
-                batch['mask']=torch.FloatTensor(batch['mask'],device=device)
+                batch['mask']=torch.FloatTensor(batch['mask']).to(device)
                 #batch['mask']=batch['mask'].to(device)  
 
                 print(f"batch:{batch}")
