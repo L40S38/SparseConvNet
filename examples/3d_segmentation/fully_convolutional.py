@@ -147,8 +147,8 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
     print('train epoch',epoch,1,'iou=', r['iou'], 'MegaMulAdd=',scn.forward_pass_multiplyAdd_count/r['nmodels_sum']/1e6, 'MegaHidden',scn.forward_pass_hidden_states/r['nmodels_sum']/1e6,'time=',time.time() - start,'s')
 
     if p['check_point']:
-        torch.save(epoch, 'epoch.pth')
-        torch.save(model.state_dict(),'model.pth')
+        torch.save(epoch, 'epoch_fully_convolutional.pth')
+        torch.save(model.state_dict(),'model_fully_convolutional.pth')
 
     if epoch in [10,30,100]:
         model.eval()
