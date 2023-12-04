@@ -54,9 +54,9 @@ p['check_point'] = False
 p['use_cuda'] = torch.cuda.is_available()
 p['gpu'] = 4
 #dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
-dtype = 'torch.FloatTensor'
+#dtype = 'torch.FloatTensor'
 #dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
-dtypei = 'torch.LongTensor'
+#dtypei = 'torch.LongTensor'
 device = torch.device('cuda:{}'.format(p['gpu']) if p['use_cuda'] else 'cpu')
 if p['use_cuda']:
     model = model.to(device)
@@ -141,12 +141,14 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         optimizer.zero_grad()
 
         # cast and put on the device
-        batch['x'][1]=batch['x'][1].type(dtype)
+        batch['x'][1]=torch.FloatTensor(batch['x'][1])
         batch['x'][1]=batch['x'][1].to(device)
-        batch['y']=batch['y'].type(dtypei)
+        batch['y']=torch.LongTensor(batch['y'])
         batch['y']=batch['y'].to(device)
-        batch['mask']=batch['mask'].type(dtype)
+        batch['mask']=torch.FloatTensor(batch['mask'])
         batch['mask']=batch['mask'].to(device)
+
+        print(f"batch:{batch}")
 
         predictions=model(batch['x'])
         loss = criterion.forward(predictions,batch['y'])
@@ -170,12 +172,14 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
             for batch in validIterator:
 
                 # cast and put on the device
-                batch['x'][1]=batch['x'][1].type(dtype)
+                batch['x'][1]=torch.FloatTensor(batch['x'][1])
                 batch['x'][1]=batch['x'][1].to(device)
-                batch['y']=batch['y'].type(dtypei)
+                batch['y']=torch.LongTensor(batch['y'])
                 batch['y']=batch['y'].to(device)
-                batch['mask']=batch['mask'].type(dtype)
-                batch['mask']=batch['mask'].to(device)
+                batch['mask']=torch.FloatTensor(batch['mask'])
+                batch['mask']=batch['mask'].to(device)  
+
+                print(f"batch:{batch}")
 
                 predictions=model(batch['x'])
                 loss = criterion.forward(predictions,batch['y'])
