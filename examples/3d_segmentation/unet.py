@@ -54,9 +54,9 @@ p['check_point'] = False
 p['use_cuda'] = torch.cuda.is_available()
 p['gpu'] = 4
 os.environ["CUDA_VISIBLE_DEVICE"] = str(p['gpu'])
-#dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
+dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
 #dtype = 'torch.FloatTensor'
-#dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
+dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
 #dtypei = 'torch.LongTensor'
 device = torch.device('cuda:{}'.format(p['gpu']) if p['use_cuda'] else 'cpu')
 if p['use_cuda']:
@@ -142,12 +142,11 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
         optimizer.zero_grad()
 
         # cast and put on the device
-        batch['x'][1]=torch.FloatTensor(batch['x'][1]).to(device)
-        batch['x'][0]=torch.LongTensor(batch['x'][0])
+        batch['x'][1]=batch['x'][1].type(dtype).to(device)
         #batch['x'][1]=batch['x'][1].to(device)
-        batch['y']=torch.LongTensor(batch['y']).to(device)
+        batch['y']=batch['y'].type(dtypei).to(device)
         #batch['y']=batch['y'].to(device)
-        batch['mask']=torch.FloatTensor(batch['mask']).to(device)
+        batch['mask']=batch['mask'].type(dtype).to(device)
         #batch['mask']=batch['mask'].to(device)
 
         print(f"batch:{batch}")
@@ -174,12 +173,12 @@ for epoch in range(p['epoch'], p['n_epochs'] + 1):
             for batch in validIterator:
 
                 # cast and put on the device
-                batch['x'][1]=torch.FloatTensor(batch['x'][1]).to(device)
+                batch['x'][1]=batch['x'][1].type(dtype).to(device)
                 #batch['x'][1]=batch['x'][1].to(device)
-                batch['y']=torch.LongTensor(batch['y']).to(device)
+                batch['y']=batch['y'].type(dtypei).to(device)
                 #batch['y']=batch['y'].to(device)
-                batch['mask']=torch.FloatTensor(batch['mask']).to(device)
-                #batch['mask']=batch['mask'].to(device)  
+                batch['mask']=batch['mask'].type(dtype).to(device)
+                #batch['mask']=batch['mask'].to(device)
 
                 print(f"batch:{batch}")
 
