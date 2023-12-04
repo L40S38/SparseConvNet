@@ -56,7 +56,7 @@ p['gpu'] = 5
 os.environ["CUDA_VISIBLE_DEVICES"] = str(p['gpu'])
 dtype = 'torch.cuda.FloatTensor' if p['use_cuda'] else 'torch.FloatTensor'
 dtypei = 'torch.cuda.LongTensor' if p['use_cuda'] else 'torch.LongTensor'
-device = torch.device('cuda' if p['use_cuda'] else 'cpu')
+device = torch.device('cuda:0' if p['use_cuda'] else 'cpu')
 if p['use_cuda']:
     model = model.to(device)
     criterion = criterion.to(device)
